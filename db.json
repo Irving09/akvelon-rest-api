@@ -1,0 +1,9 @@
+{
+  "widgets": [
+    { "id": 1, "name": "widget1", "description": "description for widget1", "price": 123.50 },
+    { "id": 1, "name": "widget2", "description": "description for widget2", "price": 34.2 },
+    { "id": 1, "name": "widget3", "description": "description for widget3", "price": 4545 },
+    { "id": 1, "name": "widget4", "description": "description for widget4", "price": 900},
+    { "id": 1, "name": "widget5", "description": "description for widget5", "price": 5656 }
+  ]
+}
