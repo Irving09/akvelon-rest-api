@@ -1,9 +1,46 @@
 {
   "widgets": [
-    { "id": 1, "name": "widget1", "description": "description for widget1", "price": 123.50 },
-    { "id": 2, "name": "widget2", "description": "description for widget2", "price": 34.2 },
-    { "id": 3, "name": "widget3", "description": "description for widget3", "price": 4545 },
-    { "id": 4, "name": "widget4", "description": "description for widget4", "price": 900},
-    { "id": 5, "name": "widget5", "description": "description for widget5", "price": 5656 }
+    {
+      "id": 1,
+      "name": "widget1",
+      "description": "description for widget1",
+      "price": 123.5
+    },
+    {
+      "id": 2,
+      "name": "widget2",
+      "description": "description for widget2",
+      "price": 34.2
+    },
+    {
+      "id": 3,
+      "name": "widget3",
+      "description": "description for widget3",
+      "price": 4545
+    },
+    {
+      "id": 4,
+      "name": "widget4",
+      "description": "description for widget4",
+      "price": 900
+    },
+    {
+      "id": 5,
+      "name": "widget5",
+      "description": "description for widget5",
+      "price": 5656
+    },
+    {
+      "name": "inno widget",
+      "description": "description for inno widget",
+      "price": 9000,
+      "id": 1
+    },
+    {
+      "name": "inno widget",
+      "description": "description for inno widget",
+      "price": 9000,
+      "id": 1500742328589
+    }
   ]
 }

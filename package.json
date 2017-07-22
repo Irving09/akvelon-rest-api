@@ -11,6 +11,7 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "json-server": "^0.11.2",
+    "lowdb": "^0.16.2",
     "morgan": "~1.8.1",
     "pug": "~2.0.0-beta11",
     "request": "^2.81.0",

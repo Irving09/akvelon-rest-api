@@ -2,8 +2,6 @@ const request = require('request');
 const querystring = require('querystring');
 const mockEntityFramework = require('../adapters/mock-entity-framework');
 
-const _resource = 'http://localhost:3000/widgets';
-
 const controllers = {
 
   list: function(req, res, next) {
@@ -18,7 +16,25 @@ const controllers = {
         });
     });
   },
-  create: function(req, res, next) {},
+  create: function(req, res, next) {
+    let newWidget = {
+      name: "inno widget",
+      description: "description for inno widget",
+      price: 9000 
+    };
+    mockEntityFramework.createWidget(newWidget, function(err, widget) {
+      let statusCode = 201;
+      let test = {
+        data: widget.data,
+        message: widget.message,
+        code: statusCode
+      };
+      console.log('===> in here', test);
+      res
+        .status(statusCode)
+        .json(test);
+    });
+  },
   update: function(req, res, next) {},
   delete: function(req, res, next) {}
 
