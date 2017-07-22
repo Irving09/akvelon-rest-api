@@ -1,6 +1,7 @@
 const request = require('request');
-const querystring = require('querystring');
 const mockEntityFramework = require('../adapters/mock-entity-framework');
+const validator = require('jsonschema').validate;
+const schema = require('../validators/schema.json');
 
 const controllers = {
 
@@ -17,23 +18,28 @@ const controllers = {
     });
   },
   create: function(req, res, next) {
-    let newWidget = {
-      name: "inno widget",
-      description: "description for inno widget",
-      price: 9000 
-    };
-    mockEntityFramework.createWidget(newWidget, function(err, widget) {
-      let statusCode = 201;
-      let test = {
-        data: widget.data,
-        message: widget.message,
-        code: statusCode
-      };
-      console.log('===> in here', test);
+    let validation = validator(req.body, schema);
+    if (validation.errors.length) {
+      let BAD_REQUEST = 400;
       res
-        .status(statusCode)
-        .json(test);
-    });
+        .status(BAD_REQUEST)
+        .json({
+          data: null,
+          message: validation.errors.map(e => e.message),
+          code: BAD_REQUEST
+        });
+    } else {
+      mockEntityFramework.createWidget(req.body, function(err, widget) {
+        let OK = 201;
+        res
+          .status(OK)
+          .json({
+            data: widget.data,
+            message: widget.message,
+            code: OK
+          });
+      });
+    }
   },
   update: function(req, res, next) {},
   delete: function(req, res, next) {}
