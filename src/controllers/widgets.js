@@ -41,7 +41,36 @@ const controllers = {
       });
     }
   },
-  update: function(req, res, next) {},
+  update: function(req, res, next) {
+    let validation = validator(req.body, schema);
+    let param = Number(req.params.id);
+    let notANumber = !Number.isInteger(param);
+    if (validation.errors.length || notANumber) {
+      let errors = validation.errors.map(e => e.message);
+      if (notANumber) 
+        errors.push('Request parameter :id is not an integer');
+
+      let BAD_REQUEST = 400;
+      res
+        .status(BAD_REQUEST)
+        .json({
+          data: null,
+          message: errors,
+          code: BAD_REQUEST
+        });
+    } else {
+      mockEntityFramework.updateWidget(param, req.body, function(err, widget) {
+        let OK = 200;
+        res
+          .status(OK)
+          .json({
+            data: widget.data,
+            message: widget.message,
+            code: OK
+          });
+      });
+    }
+  },
   delete: function(req, res, next) {}
 
 };

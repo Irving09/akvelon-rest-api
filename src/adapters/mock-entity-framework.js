@@ -33,7 +33,31 @@ const mockEntityFramework = {
       message: 'Created'
     });
   },
-  update: function(req, res, next) {},
+  updateWidget: function(id, body, callback) {
+    let widgets = db.get('widgets');
+
+    let original = widgets
+      .find({ id: id })
+      .value();
+
+    console.log('=======>', id, original);
+    let newUpdate = {
+      name: body.name ? body.name : original.name,
+      description: body.description ? body.description : original.description,
+      price: body.price ? body.price : original.price
+    };
+    console.log('=======>', newUpdate);
+
+    let updatedWidget = widgets
+      .find({ id: id })
+      .assign(newUpdate)
+      .value();
+
+    callback(null, {
+      data: updatedWidget,
+      message: 'Updated'
+    });
+  },
   delete: function(req, res, next) {}
 };
 
